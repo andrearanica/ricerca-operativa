@@ -1,0 +1,16 @@
+D:\Andrea\Documenti\GitHub\ricerca-operativa\RicercaOperativa\RicercaOperativa\bin\Debug\netcoreapp3.1\RicercaOperativa.exe
+D:\Andrea\Documenti\GitHub\ricerca-operativa\RicercaOperativa\RicercaOperativa\bin\Debug\netcoreapp3.1\RicercaOperativa.deps.json
+D:\Andrea\Documenti\GitHub\ricerca-operativa\RicercaOperativa\RicercaOperativa\bin\Debug\netcoreapp3.1\RicercaOperativa.runtimeconfig.json
+D:\Andrea\Documenti\GitHub\ricerca-operativa\RicercaOperativa\RicercaOperativa\bin\Debug\netcoreapp3.1\RicercaOperativa.runtimeconfig.dev.json
+D:\Andrea\Documenti\GitHub\ricerca-operativa\RicercaOperativa\RicercaOperativa\bin\Debug\netcoreapp3.1\RicercaOperativa.dll
+D:\Andrea\Documenti\GitHub\ricerca-operativa\RicercaOperativa\RicercaOperativa\bin\Debug\netcoreapp3.1\RicercaOperativa.pdb
+D:\Andrea\Documenti\GitHub\ricerca-operativa\RicercaOperativa\RicercaOperativa\obj\Debug\netcoreapp3.1\RicercaOperativa.csproj.AssemblyReference.cache
+D:\Andrea\Documenti\GitHub\ricerca-operativa\RicercaOperativa\RicercaOperativa\obj\Debug\netcoreapp3.1\RicercaOperativa.Form1.resources
+D:\Andrea\Documenti\GitHub\ricerca-operativa\RicercaOperativa\RicercaOperativa\obj\Debug\netcoreapp3.1\RicercaOperativa.csproj.GenerateResource.cache
+D:\Andrea\Documenti\GitHub\ricerca-operativa\RicercaOperativa\RicercaOperativa\obj\Debug\netcoreapp3.1\RicercaOperativa.GeneratedMSBuildEditorConfig.editorconfig
+D:\Andrea\Documenti\GitHub\ricerca-operativa\RicercaOperativa\RicercaOperativa\obj\Debug\netcoreapp3.1\RicercaOperativa.AssemblyInfoInputs.cache
+D:\Andrea\Documenti\GitHub\ricerca-operativa\RicercaOperativa\RicercaOperativa\obj\Debug\netcoreapp3.1\RicercaOperativa.AssemblyInfo.cs
+D:\Andrea\Documenti\GitHub\ricerca-operativa\RicercaOperativa\RicercaOperativa\obj\Debug\netcoreapp3.1\RicercaOperativa.csproj.CoreCompileInputs.cache
+D:\Andrea\Documenti\GitHub\ricerca-operativa\RicercaOperativa\RicercaOperativa\obj\Debug\netcoreapp3.1\RicercaOperativa.dll
+D:\Andrea\Documenti\GitHub\ricerca-operativa\RicercaOperativa\RicercaOperativa\obj\Debug\netcoreapp3.1\RicercaOperativa.pdb
+D:\Andrea\Documenti\GitHub\ricerca-operativa\RicercaOperativa\RicercaOperativa\obj\Debug\netcoreapp3.1\RicercaOperativa.genruntimeconfig.cache

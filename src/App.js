@@ -1,5 +1,5 @@
-import React, {useState} from 'react';
-import logo from './logo.svg';
+import React , {useState} from 'react';
+// import logo from './logo.svg';
 import './App.css';
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min";
@@ -10,9 +10,10 @@ import Form from './components/Form';
 import Table from './components/Table';
 
 function App () {
-  const [m, setMa] = useState()
+  // let up, d, m;
   const [up, setUp] = useState()
   const [d, setD] = useState()
+  const [m, setM] = useState()
 
   function setAlert (success) {
     if (success) {
@@ -26,13 +27,13 @@ function App () {
 
   function makeTable (e) {
     e.preventDefault()    
-    up = document.getElementById('up').value
-    d = document.getElementById('d').value
+    setUp(document.getElementById('up').value)
+    setD(document.getElementById('d').value)
     // console.log(`U.P.: ${up} | Destinazioni: ${d}`)
-    var temp = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
+    var temp = [[1, 2, 3], [7, 8, 9]]
+    setM(matrix(temp))
     if (up > 1 && d > 1) {
       setAlert(true)
-      m = matrix(temp)
     } else {
       setAlert(false)
     }
@@ -45,7 +46,7 @@ function App () {
       <div className='container my-5' style={{ textAlign: 'left' }}>
         <h1>Ricerca Operativa</h1>
         <Form setTable={makeTable}/>
-        <Table m={m}/>
+        <Table d={d} up={up}/>
       </div>
     </div>
   );
