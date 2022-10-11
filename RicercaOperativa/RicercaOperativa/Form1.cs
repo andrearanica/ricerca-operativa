@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data;
+using System.Threading;
 
 namespace RicercaOperativa {
     public partial class Form1 : Form {
@@ -57,6 +58,8 @@ namespace RicercaOperativa {
             for (int i = 0; i < up; i++) {
                 table.Rows.Add("UP" + (i + 1).ToString(), "");
             }
+            table.Columns.Add("Tot UP", "Tot UP");
+            table.Rows.Add("Tot D", "");
         }
 
         private void txt_up_TextChanged(object sender, EventArgs e) {
@@ -99,12 +102,32 @@ namespace RicercaOperativa {
             return true;
         }
 
-        private void btn_nordOvest_Click(object sender, EventArgs e) {
-            
+        private void nordOvest () {
+            // int o = int.Parse(table.Rows[up].Cells[0].Value.ToString()) - int.Parse(table.Rows[0].Cells[d].Value.ToString());
+            // MessageBox.Show(table.Rows[up].Cells[1].Value.ToString() + " - " + table.Rows[0].Cells[d + 1].Value.ToString());
+            while (table.Columns.Count > 2) {
+                int upValue = int.Parse(table.Rows[0].Cells[table.Columns.Count - 1].Value.ToString());
+                int dValue = int.Parse(table.Rows[table.Rows.Count - 1].Cells[1].Value.ToString());
+                if (dValue > upValue) {
+                    table.Rows[table.Rows.Count - 1].Cells[1].Value = dValue - upValue;
+                    table.Rows[0].Cells[table.Columns.Count - 1].Value = 0;
+                    table.Rows.RemoveAt(0);
+                } else if (dValue == upValue) {
+                    table.Rows.RemoveAt(0);
+                    table.Columns.RemoveAt(1);
+                } else {
+                    table.Rows[0].Cells[table.Columns.Count - 1].Value = upValue - dValue;
+                    table.Columns.RemoveAt(1);
+                }
+                MessageBox.Show("");
+            }
         }
 
-        private void Form1_Load(object sender, EventArgs e)
-        {
+        private void btn_nordOvest_Click(object sender, EventArgs e) {
+            nordOvest();
+        }
+
+        private void Form1_Load(object sender, EventArgs e) {
 
         }
 

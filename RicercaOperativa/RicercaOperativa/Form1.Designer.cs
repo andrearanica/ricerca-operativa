@@ -138,6 +138,9 @@ namespace RicercaOperativa
             // table
             // 
             this.table.AllowUserToAddRows = false;
+            this.table.AllowUserToDeleteRows = false;
+            this.table.AllowUserToResizeColumns = false;
+            this.table.AllowUserToResizeRows = false;
             this.table.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.table.Location = new System.Drawing.Point(16, 231);
             this.table.Name = "table";
