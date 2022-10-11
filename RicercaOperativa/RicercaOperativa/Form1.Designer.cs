@@ -41,8 +41,12 @@ namespace RicercaOperativa
             this.table = new System.Windows.Forms.DataGridView();
             this.btn_test = new System.Windows.Forms.Button();
             this.btn_nordOvest = new System.Windows.Forms.Button();
+            this.pnl_cost = new System.Windows.Forms.Panel();
+            this.lbl_showCost = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.table)).BeginInit();
+            this.pnl_cost.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -169,11 +173,40 @@ namespace RicercaOperativa
             this.btn_nordOvest.UseVisualStyleBackColor = true;
             this.btn_nordOvest.Click += new System.EventHandler(this.btn_nordOvest_Click);
             // 
+            // pnl_cost
+            // 
+            this.pnl_cost.Controls.Add(this.lbl_showCost);
+            this.pnl_cost.Controls.Add(this.label3);
+            this.pnl_cost.Location = new System.Drawing.Point(1598, 231);
+            this.pnl_cost.Name = "pnl_cost";
+            this.pnl_cost.Size = new System.Drawing.Size(298, 403);
+            this.pnl_cost.TabIndex = 11;
+            // 
+            // lbl_showCost
+            // 
+            this.lbl_showCost.AutoSize = true;
+            this.lbl_showCost.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.lbl_showCost.Location = new System.Drawing.Point(16, 43);
+            this.lbl_showCost.Name = "lbl_showCost";
+            this.lbl_showCost.Size = new System.Drawing.Size(0, 18);
+            this.lbl_showCost.TabIndex = 1;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label3.Location = new System.Drawing.Point(16, 19);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(99, 24);
+            this.label3.TabIndex = 0;
+            this.label3.Text = "RISOLVO";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1512, 878);
+            this.ClientSize = new System.Drawing.Size(1904, 1041);
+            this.Controls.Add(this.pnl_cost);
             this.Controls.Add(this.btn_nordOvest);
             this.Controls.Add(this.btn_test);
             this.Controls.Add(this.table);
@@ -195,6 +228,8 @@ namespace RicercaOperativa
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.table)).EndInit();
+            this.pnl_cost.ResumeLayout(false);
+            this.pnl_cost.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -214,6 +249,9 @@ namespace RicercaOperativa
         private System.Windows.Forms.DataGridView table;
         private System.Windows.Forms.Button btn_test;
         private System.Windows.Forms.Button btn_nordOvest;
+        private System.Windows.Forms.Panel pnl_cost;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label lbl_showCost;
     }
 }
 

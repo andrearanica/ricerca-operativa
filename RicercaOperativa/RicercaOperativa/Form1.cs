@@ -105,20 +105,26 @@ namespace RicercaOperativa {
         private void nordOvest () {
             // int o = int.Parse(table.Rows[up].Cells[0].Value.ToString()) - int.Parse(table.Rows[0].Cells[d].Value.ToString());
             // MessageBox.Show(table.Rows[up].Cells[1].Value.ToString() + " - " + table.Rows[0].Cells[d + 1].Value.ToString());
+            int costo = 0;
+            lbl_showCost.Text = "Risolvo con il metodo Nord Ovest\n";
             while (table.Columns.Count > 2) {
                 int upValue = int.Parse(table.Rows[0].Cells[table.Columns.Count - 1].Value.ToString());
                 int dValue = int.Parse(table.Rows[table.Rows.Count - 1].Cells[1].Value.ToString());
                 if (dValue > upValue) {
+                    costo += int.Parse(table.Rows[0].Cells[1].Value.ToString());
                     table.Rows[table.Rows.Count - 1].Cells[1].Value = dValue - upValue;
                     table.Rows[0].Cells[table.Columns.Count - 1].Value = 0;
                     table.Rows.RemoveAt(0);
                 } else if (dValue == upValue) {
+                    costo += int.Parse(table.Rows[0].Cells[1].Value.ToString());
                     table.Rows.RemoveAt(0);
                     table.Columns.RemoveAt(1);
                 } else {
+                    costo += int.Parse(table.Rows[0].Cells[1].Value.ToString());
                     table.Rows[0].Cells[table.Columns.Count - 1].Value = upValue - dValue;
                     table.Columns.RemoveAt(1);
                 }
+                lbl_showCost.Text += "Nuovo costo: " + costo + "€\n";
                 MessageBox.Show("");
             }
         }
@@ -134,6 +140,7 @@ namespace RicercaOperativa {
         private void btn_createTable_Click(object sender, EventArgs e) {
             if (checkInput()) {
                 createTable(d, up);
+                lbl_showCost.Text = "";
             }
         }
     }
