@@ -42,8 +42,9 @@ namespace RicercaOperativa
             this.btn_test = new System.Windows.Forms.Button();
             this.btn_nordOvest = new System.Windows.Forms.Button();
             this.pnl_cost = new System.Windows.Forms.Panel();
-            this.lbl_showCost = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
+            this.lbl_showCost = new System.Windows.Forms.Label();
+            this.list_showCost = new System.Windows.Forms.ListBox();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.table)).BeginInit();
             this.pnl_cost.SuspendLayout();
@@ -175,21 +176,13 @@ namespace RicercaOperativa
             // 
             // pnl_cost
             // 
+            this.pnl_cost.Controls.Add(this.list_showCost);
             this.pnl_cost.Controls.Add(this.lbl_showCost);
             this.pnl_cost.Controls.Add(this.label3);
-            this.pnl_cost.Location = new System.Drawing.Point(1598, 231);
+            this.pnl_cost.Location = new System.Drawing.Point(1346, 231);
             this.pnl_cost.Name = "pnl_cost";
-            this.pnl_cost.Size = new System.Drawing.Size(298, 403);
+            this.pnl_cost.Size = new System.Drawing.Size(550, 403);
             this.pnl_cost.TabIndex = 11;
-            // 
-            // lbl_showCost
-            // 
-            this.lbl_showCost.AutoSize = true;
-            this.lbl_showCost.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.lbl_showCost.Location = new System.Drawing.Point(16, 43);
-            this.lbl_showCost.Name = "lbl_showCost";
-            this.lbl_showCost.Size = new System.Drawing.Size(0, 18);
-            this.lbl_showCost.TabIndex = 1;
             // 
             // label3
             // 
@@ -200,6 +193,24 @@ namespace RicercaOperativa
             this.label3.Size = new System.Drawing.Size(99, 24);
             this.label3.TabIndex = 0;
             this.label3.Text = "RISOLVO";
+            // 
+            // lbl_showCost
+            // 
+            this.lbl_showCost.AutoSize = true;
+            this.lbl_showCost.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.lbl_showCost.Location = new System.Drawing.Point(16, 23);
+            this.lbl_showCost.Name = "lbl_showCost";
+            this.lbl_showCost.Size = new System.Drawing.Size(0, 18);
+            this.lbl_showCost.TabIndex = 1;
+            // 
+            // list_showCost
+            // 
+            this.list_showCost.FormattingEnabled = true;
+            this.list_showCost.ItemHeight = 24;
+            this.list_showCost.Location = new System.Drawing.Point(16, 46);
+            this.list_showCost.Name = "list_showCost";
+            this.list_showCost.Size = new System.Drawing.Size(519, 340);
+            this.list_showCost.TabIndex = 2;
             // 
             // Form1
             // 
@@ -252,6 +263,7 @@ namespace RicercaOperativa
         private System.Windows.Forms.Panel pnl_cost;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label lbl_showCost;
+        private System.Windows.Forms.ListBox list_showCost;
     }
 }
 
