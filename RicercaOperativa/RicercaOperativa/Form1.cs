@@ -108,31 +108,29 @@ namespace RicercaOperativa {
             // MessageBox.Show(table.Rows[up].Cells[1].Value.ToString() + " - " + table.Rows[0].Cells[d + 1].Value.ToString());
             int cost = 0;
             // lbl_showCost.Text = "Risolvo con il metodo Nord Ovest\n";
-            try {
-                ShowMethod SM = new ShowMethod();
-                SM.Show();
-                while (table.Columns.Count > 2) {
-                    int upValue = int.Parse(table.Rows[0].Cells[table.Columns.Count - 1].Value.ToString());
-                    int dValue = int.Parse(table.Rows[table.Rows.Count - 1].Cells[1].Value.ToString());
-                    if (dValue > upValue) {
-                        cost += int.Parse(table.Rows[0].Cells[1].Value.ToString()) * int.Parse(table.Rows[0].Cells[3].Value.ToString());
-                        table.Rows[table.Rows.Count - 1].Cells[1].Value = dValue - upValue;
-                        table.Rows[0].Cells[table.Columns.Count - 1].Value = 0;
-                        table.Rows.RemoveAt(0);
-                    } else if (dValue == upValue) {
-                        cost += int.Parse(table.Rows[0].Cells[1].Value.ToString()) * int.Parse(table.Rows[0].Cells[1].Value.ToString());
-                        table.Rows.RemoveAt(0);
-                        table.Columns.RemoveAt(1);
-                    } else {
-                        MessageBox.Show(table.Rows[0].Cells[1].Value.ToString() + "*" + table.Rows[0].Cells[table.Rows.Count].Value.ToString());
-                        cost += int.Parse(table.Rows[0].Cells[1].Value.ToString()) * int.Parse(table.Rows[0].Cells[table.Rows.Count].Value.ToString());
-                        table.Rows[0].Cells[table.Columns.Count - 1].Value = upValue - dValue;
-                        table.Columns.RemoveAt(1);
-                    }
-                    SM.add(cost.ToString());
-                    MessageBox.Show("");
+            ShowMethod SM = new ShowMethod();
+            SM.Show();
+            while (table.Columns.Count > 2) {
+                int upValue = int.Parse(table.Rows[0].Cells[table.Columns.Count - 1].Value.ToString());
+                int dValue = int.Parse(table.Rows[table.Rows.Count - 1].Cells[1].Value.ToString());
+                if (dValue > upValue) {
+                    cost += int.Parse(table.Rows[0].Cells[1].Value.ToString()) * int.Parse(table.Rows[0].Cells[3].Value.ToString());
+                    table.Rows[table.Rows.Count - 1].Cells[1].Value = dValue - upValue;
+                    table.Rows[0].Cells[table.Columns.Count - 1].Value = 0;
+                    table.Rows.RemoveAt(0);
+                } else if (dValue == upValue) {
+                    cost += int.Parse(table.Rows[0].Cells[1].Value.ToString()) * int.Parse(table.Rows[0].Cells[1].Value.ToString());
+                    table.Rows.RemoveAt(0);
+                    table.Columns.RemoveAt(1);
+                } else {
+                    MessageBox.Show(table.Rows[0].Cells[1].Value.ToString() + "*" + table.Rows[0].Cells[table.Rows.Count].Value.ToString());
+                    cost += int.Parse(table.Rows[0].Cells[1].Value.ToString()) * int.Parse(table.Rows[0].Cells[table.Rows.Count].Value.ToString());
+                    table.Rows[0].Cells[table.Columns.Count - 1].Value = upValue - dValue;
+                    table.Columns.RemoveAt(1);
                 }
-            } catch { MessageBox.Show("Devi inserire i totali"); }
+                SM.add(cost.ToString());
+                MessageBox.Show("");
+            }
         }
 
         private void btn_nordOvest_Click(object sender, EventArgs e) {
