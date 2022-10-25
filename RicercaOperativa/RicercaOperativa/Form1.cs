@@ -14,7 +14,6 @@ namespace RicercaOperativa {
     public partial class Form1 : Form {
         // private int[,] matrix;
         int up, d;
-        string message;
         public Form1() {
             InitializeComponent();
         }
@@ -61,6 +60,11 @@ namespace RicercaOperativa {
             }
             table.Columns.Add("Tot UP", "Tot UP");
             table.Rows.Add("Tot D", "");
+            
+            // Block row headers
+            for (int i = 0; i < table.Rows.Count; i++) {
+                table.Rows[i].Cells[0].ReadOnly = true;
+            }
         }
 
         private void txt_up_TextChanged(object sender, EventArgs e) {
@@ -77,16 +81,14 @@ namespace RicercaOperativa {
 
         private void btn_test_Click(object sender, EventArgs e) {
             Random r = new Random();
-            try {
-                if (checkUP() && checkD()) {
-                    for (int i = 0; i < up; i++) {
-                        for (int j = 1; j <= d; j++) {
-                            table.Rows[i].Cells[j].Value = r.Next(0, 10);
-                        }
+            if (checkUP() && checkD() && table.Rows.Count > 0 && table.Columns.Count > 0) {
+                for (int i = 0; i < up; i++) {
+                    for (int j = 1; j <= d; j++) {
+                        table.Rows[i].Cells[j].Value = r.Next(0, 10);
                     }
                 }
-            } catch (System.ArgumentOutOfRangeException) {
-                MessageBox.Show("Devi creare la tabella per riempirla", "Errore");
+            } else {
+                MessageBox.Show("Devi creare una tabella per riempire i dati");
             }
         }
 
@@ -114,7 +116,7 @@ namespace RicercaOperativa {
                 int upValue = int.Parse(table.Rows[0].Cells[table.Columns.Count - 1].Value.ToString());
                 int dValue = int.Parse(table.Rows[table.Rows.Count - 1].Cells[1].Value.ToString());
                 if (dValue > upValue) {
-                    cost += int.Parse(table.Rows[0].Cells[1].Value.ToString()) * int.Parse(table.Rows[0].Cells[3].Value.ToString());
+                    cost += int.Parse(table.Rows[0].Cells[1].Value.ToString()) * int.Parse(table.Rows[0].Cells[table.Columns.Count - 1].Value.ToString());
                     table.Rows[table.Rows.Count - 1].Cells[1].Value = dValue - upValue;
                     table.Rows[0].Cells[table.Columns.Count - 1].Value = 0;
                     table.Rows.RemoveAt(0);
@@ -123,8 +125,7 @@ namespace RicercaOperativa {
                     table.Rows.RemoveAt(0);
                     table.Columns.RemoveAt(1);
                 } else {
-                    MessageBox.Show(table.Rows[0].Cells[1].Value.ToString() + "*" + table.Rows[0].Cells[table.Rows.Count].Value.ToString());
-                    cost += int.Parse(table.Rows[0].Cells[1].Value.ToString()) * int.Parse(table.Rows[0].Cells[table.Rows.Count].Value.ToString());
+                    cost += int.Parse(table.Rows[table.Rows.Count - 1].Cells[1].Value.ToString()) * int.Parse(table.Rows[0].Cells[table.Columns.Count].Value.ToString());
                     table.Rows[0].Cells[table.Columns.Count - 1].Value = upValue - dValue;
                     table.Columns.RemoveAt(1);
                 }
@@ -134,7 +135,12 @@ namespace RicercaOperativa {
         }
 
         private void btn_nordOvest_Click(object sender, EventArgs e) {
-            nordOvest();
+            if (table.Rows.Count > 0 && table.Columns.Count > 0) {
+                nordOvest();
+            } else {
+                MessageBox.Show("Devi creare una tabella per utilizzare questo metodo");
+            }
+
         }
 
         private void Form1_Load(object sender, EventArgs e) {
