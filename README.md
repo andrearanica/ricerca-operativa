@@ -1,7 +1,22 @@
 # :rocket: Ricerca operativa
 <!--Compito di gestione progetto-->
-Il classico problema logistico consiste nella necessità di decidere come traserire merci da <i>n</i> unità produttive a <i>n</i> destinazioni. Il trasporto ha dei costi dovuti a distanza - tempo.<br>
-Questo software si occupa di fornire una soluzione a questo problema tramite gli algoritmi del <b>nord ovest</b> e dei <b>minimi costi</b>. 
-## :mag_right: Installazione
-```# git clone https://www.github.com/andrearanica/ricerca-operativa```<br>
-Per eseguire il programma recarsi nella directory ```\ricerca-operativa\bin\debug\Ricerca Operativa.exe```
+Dati il numero di unità produttive e di destinazioni, il software esegue l'algoritmo del <i>nord-ovest</i> e dei <i>minimi costi</i>
+
+## Algoritmi
+| Titolo        | Funzionamento                                                                             |
+| ------        | ---------------                                                                           |
+| Nord-ovest    | La casella di riferimento è sempre quella in alto a sinistra, ovvero quella a nord ovest  |
+| Minimi costi  | La casella di riferimento è quella che contiene il costo più basso                        |
+
+## 🚧 Roadmap
+- [ ] Inserimento dei dati
+  - [X] Numero minimo di destinazioni e unità produttive
+  - [ ] Impossibilità di inserire lettere nella tabella
+  - [ ] Controllo del totale delle righe e colonne
+
+- [ ] Algoritmo del nord-ovest
+  - [X] Funzionamento sulla tabella (modifica-rimozione celle)
+  - [ ] Calcolo del costo
+- [ ] Algoritmo dei minimi costi
+  - [ ] Funzionamento sulla tabella (modifica-rimozione celle)
+  - [ ] Calcolo del costo
