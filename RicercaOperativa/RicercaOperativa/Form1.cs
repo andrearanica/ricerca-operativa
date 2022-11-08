@@ -130,6 +130,13 @@ namespace RicercaOperativa {
         }
 
         private bool checkTotals () {
+            for (int i = 0; i < table.Rows.Count; i++) {
+                for (int j = 0; j < table.Columns.Count; j++) {
+                    if (table.Rows[i].Cells[j].Value == null) {
+                        return false;
+                    }
+                }
+            }
             return true;
         }
 
@@ -137,7 +144,7 @@ namespace RicercaOperativa {
             if (table.Rows.Count > 2 && table.Columns.Count > 2 && checkTotals()) {
                 nordOvest();
             } else {
-                MessageBox.Show("Devi creare una tabella per utilizzare questo metodo");
+                MessageBox.Show("Dati errati");
             }
 
         }
