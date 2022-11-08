@@ -41,6 +41,7 @@ namespace RicercaOperativa
             this.btn_nordOvest = new System.Windows.Forms.Button();
             this.txt_up = new System.Windows.Forms.NumericUpDown();
             this.txt_d = new System.Windows.Forms.NumericUpDown();
+            this.btn_minimiCosti = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.table)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txt_up)).BeginInit();
@@ -116,7 +117,7 @@ namespace RicercaOperativa
             this.btn_createTable.BackColor = System.Drawing.Color.Maroon;
             this.btn_createTable.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.btn_createTable.ForeColor = System.Drawing.SystemColors.HighlightText;
-            this.btn_createTable.Location = new System.Drawing.Point(486, 130);
+            this.btn_createTable.Location = new System.Drawing.Point(486, 126);
             this.btn_createTable.Name = "btn_createTable";
             this.btn_createTable.Size = new System.Drawing.Size(134, 68);
             this.btn_createTable.TabIndex = 7;
@@ -138,7 +139,7 @@ namespace RicercaOperativa
             this.table.Location = new System.Drawing.Point(88, 244);
             this.table.Name = "table";
             this.table.RowTemplate.Height = 25;
-            this.table.Size = new System.Drawing.Size(971, 396);
+            this.table.Size = new System.Drawing.Size(983, 396);
             this.table.TabIndex = 8;
             this.table.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.table_CellValueChanged);
             // 
@@ -148,7 +149,7 @@ namespace RicercaOperativa
             this.btn_test.BackColor = System.Drawing.Color.Maroon;
             this.btn_test.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.btn_test.ForeColor = System.Drawing.SystemColors.HighlightText;
-            this.btn_test.Location = new System.Drawing.Point(783, 133);
+            this.btn_test.Location = new System.Drawing.Point(711, 128);
             this.btn_test.Name = "btn_test";
             this.btn_test.Size = new System.Drawing.Size(116, 65);
             this.btn_test.TabIndex = 9;
@@ -160,11 +161,11 @@ namespace RicercaOperativa
             // 
             this.btn_nordOvest.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btn_nordOvest.BackColor = System.Drawing.Color.Maroon;
-            this.btn_nordOvest.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.btn_nordOvest.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.btn_nordOvest.ForeColor = System.Drawing.SystemColors.HighlightText;
-            this.btn_nordOvest.Location = new System.Drawing.Point(905, 133);
+            this.btn_nordOvest.Location = new System.Drawing.Point(833, 129);
             this.btn_nordOvest.Name = "btn_nordOvest";
-            this.btn_nordOvest.Size = new System.Drawing.Size(149, 65);
+            this.btn_nordOvest.Size = new System.Drawing.Size(116, 65);
             this.btn_nordOvest.TabIndex = 10;
             this.btn_nordOvest.Text = "Nord-Ovest";
             this.btn_nordOvest.UseVisualStyleBackColor = false;
@@ -184,12 +185,27 @@ namespace RicercaOperativa
             this.txt_d.Size = new System.Drawing.Size(181, 29);
             this.txt_d.TabIndex = 13;
             // 
+            // btn_minimiCosti
+            // 
+            this.btn_minimiCosti.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btn_minimiCosti.BackColor = System.Drawing.Color.Maroon;
+            this.btn_minimiCosti.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.btn_minimiCosti.ForeColor = System.Drawing.SystemColors.HighlightText;
+            this.btn_minimiCosti.Location = new System.Drawing.Point(955, 128);
+            this.btn_minimiCosti.Name = "btn_minimiCosti";
+            this.btn_minimiCosti.Size = new System.Drawing.Size(116, 65);
+            this.btn_minimiCosti.TabIndex = 14;
+            this.btn_minimiCosti.Text = "Minimi costi";
+            this.btn_minimiCosti.UseVisualStyleBackColor = false;
+            this.btn_minimiCosti.Click += new System.EventHandler(this.button1_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.HighlightText;
-            this.ClientSize = new System.Drawing.Size(1185, 705);
+            this.ClientSize = new System.Drawing.Size(1193, 705);
+            this.Controls.Add(this.btn_minimiCosti);
             this.Controls.Add(this.txt_d);
             this.Controls.Add(this.txt_up);
             this.Controls.Add(this.btn_nordOvest);
@@ -233,6 +249,7 @@ namespace RicercaOperativa
         private System.Windows.Forms.Button btn_nordOvest;
         private System.Windows.Forms.NumericUpDown txt_up;
         private System.Windows.Forms.NumericUpDown txt_d;
+        private System.Windows.Forms.Button btn_minimiCosti;
     }
 }
 

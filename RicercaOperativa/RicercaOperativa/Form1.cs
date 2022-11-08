@@ -1,14 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Data;
-using System.Threading;
+using System.Threading.Tasks;
 
 namespace RicercaOperativa {
     public partial class Form1 : Form {
@@ -116,26 +108,33 @@ namespace RicercaOperativa {
                 int upValue = int.Parse(table.Rows[0].Cells[table.Columns.Count - 1].Value.ToString());
                 int dValue = int.Parse(table.Rows[table.Rows.Count - 1].Cells[1].Value.ToString());
                 if (dValue > upValue) {
-                    cost += int.Parse(table.Rows[0].Cells[1].Value.ToString()) * int.Parse(table.Rows[0].Cells[table.Columns.Count - 1].Value.ToString());
+                    cost += upValue * int.Parse(table.Rows[0].Cells[1].Value.ToString());
                     table.Rows[table.Rows.Count - 1].Cells[1].Value = dValue - upValue;
                     table.Rows[0].Cells[table.Columns.Count - 1].Value = 0;
                     table.Rows.RemoveAt(0);
                 } else if (dValue == upValue) {
-                    cost += int.Parse(table.Rows[0].Cells[1].Value.ToString()) * int.Parse(table.Rows[0].Cells[1].Value.ToString());
+                    // cost += int.Parse(table.Rows[0].Cells[1].Value.ToString()) * int.Parse(table.Rows[0].Cells[1].Value.ToString());
+                    cost += dValue * int.Parse( table.Rows[0].Cells[1].Value.ToString());
                     table.Rows.RemoveAt(0);
                     table.Columns.RemoveAt(1);
                 } else {
-                    cost += int.Parse(table.Rows[table.Rows.Count - 1].Cells[1].Value.ToString()) * int.Parse(table.Rows[0].Cells[table.Columns.Count].Value.ToString());
+                    cost += dValue * int.Parse(table.Rows[0].Cells[1].Value.ToString());
+                    // cost += int.Parse(table.Rows[table.Rows.Count - 1].Cells[1].Value.ToString()) * int.Parse(table.Rows[0].Cells[table.Columns.Count].Value.ToString());
                     table.Rows[0].Cells[table.Columns.Count - 1].Value = upValue - dValue;
                     table.Columns.RemoveAt(1);
                 }
                 SM.add(cost.ToString());
-                MessageBox.Show("");
+                var v = Task.Delay(4000);
+                v.Wait();
             }
         }
 
+        private bool checkTotals () {
+            return true;
+        }
+
         private void btn_nordOvest_Click(object sender, EventArgs e) {
-            if (table.Rows.Count > 0 && table.Columns.Count > 0) {
+            if (table.Rows.Count > 2 && table.Columns.Count > 2 && checkTotals()) {
                 nordOvest();
             } else {
                 MessageBox.Show("Devi creare una tabella per utilizzare questo metodo");
@@ -145,6 +144,18 @@ namespace RicercaOperativa {
 
         private void Form1_Load(object sender, EventArgs e) {
 
+        }
+
+        private void minimiCosti () {
+
+        }
+
+        private void button1_Click(object sender, EventArgs e) {
+            if (table.Rows.Count > 0 && table.Columns.Count > 0 && checkTotals()) {
+                minimiCosti();
+            } else {
+                MessageBox.Show("Devi creare una tabella per utilizzare questo metodo");
+            }
         }
 
         private void btn_createTable_Click(object sender, EventArgs e) {
