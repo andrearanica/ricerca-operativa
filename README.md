@@ -21,5 +21,5 @@ Dati il numero di unità produttive e di destinazioni, il software esegue l'algo
   - [ ] Funzionamento sulla tabella (modifica-rimozione celle)
   - [ ] Calcolo del costo
 - [ ] Bug vari
-  - [ ] Quando clicco nord ovest controllo i totali
+  - [X] Quando clicco nord ovest controllo i totali
   - [ ] Devo controllare che i totali siano uguali
