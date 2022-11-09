@@ -14,11 +14,16 @@ namespace RicercaOperativa {
         }
 
         public void add (String message) {
-            listBox1.Items.Add("Nuovo costo: " + message);
+            listBox1.Items.Add(message);
         }
 
         private void ShowMethod_Load(object sender, EventArgs e) {
             // listBox1.Items.Add("Nuovo costo: " + message);
+        }
+
+        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

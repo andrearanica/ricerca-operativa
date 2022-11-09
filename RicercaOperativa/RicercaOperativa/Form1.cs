@@ -106,6 +106,8 @@ namespace RicercaOperativa {
             // lbl_showCost.Text = "Risolvo con il metodo Nord Ovest\n";
             ShowMethod SM = new ShowMethod();
             SM.Show();
+            SM.add("INIZIO NORD-OVEST");
+            SM.add("******************************");
             while (table.Columns.Count > 2) {
                 int upValue = int.Parse(table.Rows[0].Cells[table.Columns.Count - 1].Value.ToString());
                 int dValue = int.Parse(table.Rows[table.Rows.Count - 1].Cells[1].Value.ToString());
@@ -125,8 +127,8 @@ namespace RicercaOperativa {
                     table.Rows[0].Cells[table.Columns.Count - 1].Value = upValue - dValue;
                     table.Columns.RemoveAt(1);
                 }
-                SM.add(cost.ToString());
-                var v = Task.Delay(4000);
+                SM.add($"Nuovo costo: { cost.ToString() }");
+                var v = Task.Delay(500);
                 v.Wait();
             }
         }
@@ -158,9 +160,8 @@ namespace RicercaOperativa {
             if (table.Rows.Count > 2 && table.Columns.Count > 2 && checkTotals()) {
                 nordOvest();
             } else {
-                MessageBox.Show("Dati errati");
+                MessageBox.Show("Dati errati: controlla che i dati siano inseriti e che i totali corrispondano");
             }
-
         }
 
         private void Form1_Load(object sender, EventArgs e) {
@@ -168,14 +169,18 @@ namespace RicercaOperativa {
         }
 
         private void minimiCosti () {
-
+            int cost = 0;
+            ShowMethod SM = new ShowMethod();
+            SM.ShowDialog();
+            SM.add("INIZIO MINIMI COSTI");
+            SM.add("******************************");
         }
 
         private void button1_Click(object sender, EventArgs e) {
             if (table.Rows.Count > 0 && table.Columns.Count > 0 && checkTotals()) {
                 minimiCosti();
             } else {
-                MessageBox.Show("Devi creare una tabella per utilizzare questo metodo");
+                MessageBox.Show("Dati errati: controlla che i dati siano inseriti e che i totali corrispondano");
             }
         }
 
