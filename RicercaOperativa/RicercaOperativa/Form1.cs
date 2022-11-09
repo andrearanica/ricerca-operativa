@@ -57,6 +57,8 @@ namespace RicercaOperativa {
             for (int i = 0; i < table.Rows.Count; i++) {
                 table.Rows[i].Cells[0].ReadOnly = true;
             }
+
+            
         }
 
         private void txt_up_TextChanged(object sender, EventArgs e) {
@@ -137,6 +139,18 @@ namespace RicercaOperativa {
                     }
                 }
             }
+            int total = int.Parse(table.Rows[table.Rows.Count - 1].Cells[table.Columns.Count - 1].Value.ToString());
+            int n = 0;
+            for (int i = 1; i < table.Columns.Count - 1; i++) {
+                n += int.Parse(table.Rows[table.Rows.Count - 1].Cells[i].Value.ToString());
+            }
+            if (n != total) return false;
+
+            n = 0;
+            for (int i = 0; i < table.Rows.Count - 1; i++) {
+                n += int.Parse(table.Rows[i].Cells[table.Columns.Count - 1].Value.ToString());
+            }
+            if (n != total) return false;
             return true;
         }
 

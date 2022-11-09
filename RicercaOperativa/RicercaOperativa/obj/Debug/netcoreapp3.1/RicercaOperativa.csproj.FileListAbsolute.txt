@@ -31,3 +31,4 @@ C:\Users\ranica.18375\Documents\GitHub\ricerca-operativa\RicercaOperativa\Ricerc
 C:\Users\ranica.18375\Documents\GitHub\ricerca-operativa\RicercaOperativa\RicercaOperativa\obj\Debug\netcoreapp3.1\RicercaOperativa.pdb
 C:\Users\ranica.18375\Documents\GitHub\ricerca-operativa\RicercaOperativa\RicercaOperativa\obj\Debug\netcoreapp3.1\RicercaOperativa.genruntimeconfig.cache
 C:\Users\ranica.18375\Documents\GitHub\ricerca-operativa\RicercaOperativa\RicercaOperativa\obj\Debug\netcoreapp3.1\RicercaOperativa.ShowMethod.resources
+D:\Andrea\Documenti\GitHub\ricerca-operativa\RicercaOperativa\RicercaOperativa\obj\Debug\netcoreapp3.1\RicercaOperativa.ShowMethod.resources

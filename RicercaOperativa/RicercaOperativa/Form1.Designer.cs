@@ -135,11 +135,13 @@ namespace RicercaOperativa
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.table.BackgroundColor = System.Drawing.Color.White;
+            this.table.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.table.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.table.Location = new System.Drawing.Point(88, 244);
             this.table.Name = "table";
             this.table.RowTemplate.Height = 25;
             this.table.Size = new System.Drawing.Size(983, 396);
+            this.table.StandardTab = true;
             this.table.TabIndex = 8;
             this.table.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.table_CellValueChanged);
             // 
