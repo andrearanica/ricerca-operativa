@@ -187,12 +187,12 @@ namespace RicercaOperativa {
             SM.add("INIZIO MINIMI COSTI");
             SM.add("******************************");
             getPoint();
-            while (table.Columns.Count > 2) {
+            //while (table.Columns.Count > 2) {
                 Point p = getPoint();
                 int dValue = int.Parse(table.Rows[table.Rows.Count - 1].Cells[p.col].Value.ToString());
                 int upValue = int.Parse(table.Rows[p.row].Cells[table.Columns.Count - 1].Value.ToString());
                 MessageBox.Show($"D:{ dValue } UP:{ upValue }, { p.row } { p.col }");
-            }
+            // }
         }
 
         private void button1_Click(object sender, EventArgs e) {
