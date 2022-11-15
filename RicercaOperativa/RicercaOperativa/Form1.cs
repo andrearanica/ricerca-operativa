@@ -57,8 +57,6 @@ namespace RicercaOperativa {
             for (int i = 0; i < table.Rows.Count; i++) {
                 table.Rows[i].Cells[0].ReadOnly = true;
             }
-
-            
         }
 
         private void txt_up_TextChanged(object sender, EventArgs e) {
@@ -168,12 +166,33 @@ namespace RicercaOperativa {
 
         }
 
+        private Point getPoint () {
+            int value = 0;
+            Point p = new Point(0, 0);
+            for (int i = 0; i < table.Rows.Count - 1; i++) {
+                for (int j = 1; j < table.Columns.Count - 1; j++) {
+                    if (value < int.Parse(table.Rows[i].Cells[j].Value.ToString())) {
+                        value = int.Parse(table.Rows[i].Cells[j].Value.ToString());
+                        p = new Point(i, j);
+                    }
+                }
+            }
+            return p;
+        }
+
         private void minimiCosti () {
             int cost = 0;
             ShowMethod SM = new ShowMethod();
             SM.ShowDialog();
             SM.add("INIZIO MINIMI COSTI");
             SM.add("******************************");
+            getPoint();
+            while (table.Columns.Count > 2) {
+                Point p = getPoint();
+                int dValue = int.Parse(table.Rows[table.Rows.Count - 1].Cells[p.col].Value.ToString());
+                int upValue = int.Parse(table.Rows[p.row].Cells[table.Columns.Count - 1].Value.ToString());
+                MessageBox.Show($"D:{ dValue } UP:{ upValue }, { p.row } { p.col }");
+            }
         }
 
         private void button1_Click(object sender, EventArgs e) {
@@ -190,6 +209,13 @@ namespace RicercaOperativa {
             } else {
                 MessageBox.Show("Devi inserire almeno due unità produttive e due destinazioni");
             }
+        }
+    }
+    public class Point {
+        public int row { get; set; }
+        public int col { get; set; }
+        public Point(int row, int col) {
+            this.row = row; this.col = col;
         }
     }
 }
