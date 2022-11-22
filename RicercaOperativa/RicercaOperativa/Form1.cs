@@ -166,38 +166,27 @@ namespace RicercaOperativa {
 
         }
 
-        private Point getPoint () {
-            int value = 0;
-            Point p = new Point(0, 0);
-            for (int i = 0; i < table.Rows.Count - 1; i++) {
-                for (int j = 1; j < table.Columns.Count - 1; j++) {
-                    if (value < int.Parse(table.Rows[i].Cells[j].Value.ToString())) {
-                        value = int.Parse(table.Rows[i].Cells[j].Value.ToString());
-                        p = new Point(i, j);
-                    }
-                }
-            }
-            return p;
-        }
-
         private void minimiCosti () {
             int cost = 0;
             ShowMethod SM = new ShowMethod();
             SM.ShowDialog();
             SM.add("INIZIO MINIMI COSTI");
             SM.add("******************************");
-            getPoint();
-            //while (table.Columns.Count > 2) {
-                Point p = getPoint();
-                int dValue = int.Parse(table.Rows[table.Rows.Count - 1].Cells[p.col].Value.ToString());
-                int upValue = int.Parse(table.Rows[p.row].Cells[table.Columns.Count - 1].Value.ToString());
-                MessageBox.Show($"D:{ dValue } UP:{ upValue }, { p.row } { p.col }");
-            // }
+            int min = 0;
+            for (int i = 0; i < table.Rows.Count - 1; i++) {
+                for (int j = 1; j < table.Columns.Count - 1; j++) {
+                    if (int.Parse(table.Rows[i].Cells[j].Value.ToString()) < min) {
+                        min = int.Parse(table.Rows[i].Cells[j].Value.ToString());
+                    }
+                }
+            }
+            MessageBox.Show(min.ToString());
         }
 
         private void button1_Click(object sender, EventArgs e) {
             if (table.Rows.Count > 0 && table.Columns.Count > 0 && checkTotals()) {
                 minimiCosti();
+
             } else {
                 MessageBox.Show("Dati errati: controlla che i dati siano inseriti e che i totali corrispondano");
             }
@@ -214,7 +203,7 @@ namespace RicercaOperativa {
     public class Point {
         public int row { get; set; }
         public int col { get; set; }
-        public Point(int row, int col) {
+        public Point(int col, int row) {
             this.row = row; this.col = col;
         }
     }
