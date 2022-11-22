@@ -43,6 +43,7 @@ namespace RicercaOperativa
             this.txt_d = new System.Windows.Forms.NumericUpDown();
             this.btn_minimiCosti = new System.Windows.Forms.Button();
             this.list_showMethod = new System.Windows.Forms.ListBox();
+            this.button1 = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.table)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txt_up)).BeginInit();
@@ -64,7 +65,7 @@ namespace RicercaOperativa
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(12, 24);
+            this.label1.Location = new System.Drawing.Point(91, 30);
             this.label1.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(415, 55);
@@ -152,7 +153,7 @@ namespace RicercaOperativa
             this.btn_test.BackColor = System.Drawing.Color.Maroon;
             this.btn_test.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.btn_test.ForeColor = System.Drawing.SystemColors.HighlightText;
-            this.btn_test.Location = new System.Drawing.Point(711, 133);
+            this.btn_test.Location = new System.Drawing.Point(589, 133);
             this.btn_test.Name = "btn_test";
             this.btn_test.Size = new System.Drawing.Size(116, 60);
             this.btn_test.TabIndex = 9;
@@ -166,7 +167,7 @@ namespace RicercaOperativa
             this.btn_nordOvest.BackColor = System.Drawing.Color.Maroon;
             this.btn_nordOvest.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.btn_nordOvest.ForeColor = System.Drawing.SystemColors.HighlightText;
-            this.btn_nordOvest.Location = new System.Drawing.Point(833, 133);
+            this.btn_nordOvest.Location = new System.Drawing.Point(711, 132);
             this.btn_nordOvest.Name = "btn_nordOvest";
             this.btn_nordOvest.Size = new System.Drawing.Size(116, 61);
             this.btn_nordOvest.TabIndex = 10;
@@ -194,7 +195,7 @@ namespace RicercaOperativa
             this.btn_minimiCosti.BackColor = System.Drawing.Color.Maroon;
             this.btn_minimiCosti.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.btn_minimiCosti.ForeColor = System.Drawing.SystemColors.HighlightText;
-            this.btn_minimiCosti.Location = new System.Drawing.Point(955, 133);
+            this.btn_minimiCosti.Location = new System.Drawing.Point(833, 133);
             this.btn_minimiCosti.Name = "btn_minimiCosti";
             this.btn_minimiCosti.Size = new System.Drawing.Size(116, 60);
             this.btn_minimiCosti.TabIndex = 14;
@@ -213,12 +214,26 @@ namespace RicercaOperativa
             this.list_showMethod.Size = new System.Drawing.Size(360, 412);
             this.list_showMethod.TabIndex = 15;
             // 
+            // button1
+            // 
+            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.button1.BackColor = System.Drawing.Color.Maroon;
+            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.button1.ForeColor = System.Drawing.SystemColors.HighlightText;
+            this.button1.Location = new System.Drawing.Point(955, 133);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(116, 60);
+            this.button1.TabIndex = 16;
+            this.button1.Text = "Tutti i metodi";
+            this.button1.UseVisualStyleBackColor = false;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.HighlightText;
             this.ClientSize = new System.Drawing.Size(1193, 705);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.list_showMethod);
             this.Controls.Add(this.btn_minimiCosti);
             this.Controls.Add(this.txt_d);
@@ -267,6 +282,7 @@ namespace RicercaOperativa
         private System.Windows.Forms.NumericUpDown txt_d;
         private System.Windows.Forms.Button btn_minimiCosti;
         private System.Windows.Forms.ListBox list_showMethod;
+        private System.Windows.Forms.Button button1;
     }
 }
 

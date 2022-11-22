@@ -112,22 +112,25 @@ namespace RicercaOperativa {
                     cost += upValue * int.Parse(table.Rows[0].Cells[1].Value.ToString());
                     table.Rows[table.Rows.Count - 1].Cells[1].Value = dValue - upValue;
                     table.Rows[0].Cells[table.Columns.Count - 1].Value = 0;
+                    list_showMethod.Items.Add($"{ upValue } * { int.Parse(table.Rows[0].Cells[1].Value.ToString()) } = { upValue * int.Parse(table.Rows[0].Cells[1].Value.ToString()) }");
                     table.Rows.RemoveAt(0);
                 } else if (dValue == upValue) {
                     // cost += int.Parse(table.Rows[0].Cells[1].Value.ToString()) * int.Parse(table.Rows[0].Cells[1].Value.ToString());
                     cost += dValue * int.Parse( table.Rows[0].Cells[1].Value.ToString());
+                    list_showMethod.Items.Add($"{ dValue } * { int.Parse(table.Rows[0].Cells[1].Value.ToString()) } = { dValue * int.Parse(table.Rows[0].Cells[1].Value.ToString()) }");
                     table.Rows.RemoveAt(0);
                     table.Columns.RemoveAt(1);
                 } else {
                     cost += dValue * int.Parse(table.Rows[0].Cells[1].Value.ToString());
                     // cost += int.Parse(table.Rows[table.Rows.Count - 1].Cells[1].Value.ToString()) * int.Parse(table.Rows[0].Cells[table.Columns.Count].Value.ToString());
+                    list_showMethod.Items.Add($"{ dValue } * { int.Parse(table.Rows[0].Cells[1].Value.ToString()) } = { dValue * int.Parse(table.Rows[0].Cells[1].Value.ToString()) }");
                     table.Rows[0].Cells[table.Columns.Count - 1].Value = upValue - dValue;
                     table.Columns.RemoveAt(1);
                 }
-                list_showMethod.Items.Add($"Nuovo costo: { cost.ToString() }");
                 var v = Task.Delay(1000);
                 v.Wait();
             }
+            list_showMethod.Items.Add($"Costo finale Nord-Ovest: { cost }");
             list_showMethod.Items.Add("-------------------------");
         }
 
@@ -168,10 +171,8 @@ namespace RicercaOperativa {
 
         private void minimiCosti () {
             int cost = 0;
-            ShowMethod SM = new ShowMethod();
-            SM.ShowDialog();
-            SM.add("INIZIO MINIMI COSTI");
-            SM.add("******************************");
+            list_showMethod.Items.Add("INIZIO MINIMI COSTI");
+            list_showMethod.Items.Add("-------------------------");
             int min = 0, x = 0, y = 0;
             while (table.Columns.Count > 2) {
                 for (int i = 0; i < table.Rows.Count - 1; i++) {
@@ -183,8 +184,9 @@ namespace RicercaOperativa {
                         }
                     }
                 }
-                int upValue = int.Parse(table.Rows[y].Cells[table.Columns.Count - 1].Value.ToString());
-                int dValue = int.Parse(table.Rows[table.Rows.Count - 1].Cells[x].Value.ToString());
+                /*int upValue = int.Parse(table.Rows[y].Cells[table.Columns.Count - 1].Value.ToString());
+                int dValue = int.Parse(table.Rows[table.Rows.Count - 1].Cells[x].Value.ToString());*/
+                MessageBox.Show(min.ToString());
             }
             MessageBox.Show(min.ToString());
         }
