@@ -42,6 +42,7 @@ namespace RicercaOperativa
             this.txt_up = new System.Windows.Forms.NumericUpDown();
             this.txt_d = new System.Windows.Forms.NumericUpDown();
             this.btn_minimiCosti = new System.Windows.Forms.Button();
+            this.list_showMethod = new System.Windows.Forms.ListBox();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.table)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txt_up)).BeginInit();
@@ -140,7 +141,7 @@ namespace RicercaOperativa
             this.table.Location = new System.Drawing.Point(88, 244);
             this.table.Name = "table";
             this.table.RowTemplate.Height = 25;
-            this.table.Size = new System.Drawing.Size(983, 396);
+            this.table.Size = new System.Drawing.Size(611, 412);
             this.table.StandardTab = true;
             this.table.TabIndex = 8;
             this.table.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.table_CellValueChanged);
@@ -201,12 +202,24 @@ namespace RicercaOperativa
             this.btn_minimiCosti.UseVisualStyleBackColor = false;
             this.btn_minimiCosti.Click += new System.EventHandler(this.button1_Click);
             // 
+            // list_showMethod
+            // 
+            this.list_showMethod.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.list_showMethod.FormattingEnabled = true;
+            this.list_showMethod.ItemHeight = 24;
+            this.list_showMethod.Location = new System.Drawing.Point(711, 244);
+            this.list_showMethod.Name = "list_showMethod";
+            this.list_showMethod.Size = new System.Drawing.Size(360, 412);
+            this.list_showMethod.TabIndex = 15;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.HighlightText;
             this.ClientSize = new System.Drawing.Size(1193, 705);
+            this.Controls.Add(this.list_showMethod);
             this.Controls.Add(this.btn_minimiCosti);
             this.Controls.Add(this.txt_d);
             this.Controls.Add(this.txt_up);
@@ -253,6 +266,7 @@ namespace RicercaOperativa
         private System.Windows.Forms.NumericUpDown txt_up;
         private System.Windows.Forms.NumericUpDown txt_d;
         private System.Windows.Forms.Button btn_minimiCosti;
+        private System.Windows.Forms.ListBox list_showMethod;
     }
 }
 

@@ -102,10 +102,9 @@ namespace RicercaOperativa {
             // MessageBox.Show(table.Rows[up].Cells[1].Value.ToString() + " - " + table.Rows[0].Cells[d + 1].Value.ToString());
             int cost = 0;
             // lbl_showCost.Text = "Risolvo con il metodo Nord Ovest\n";
-            ShowMethod SM = new ShowMethod();
-            SM.Show();
-            SM.add("INIZIO NORD-OVEST");
-            SM.add("******************************");
+
+            list_showMethod.Items.Add("INIZIO NORD-OVEST");
+            list_showMethod.Items.Add("-------------------------");
             while (table.Columns.Count > 2) {
                 int upValue = int.Parse(table.Rows[0].Cells[table.Columns.Count - 1].Value.ToString());
                 int dValue = int.Parse(table.Rows[table.Rows.Count - 1].Cells[1].Value.ToString());
@@ -125,10 +124,11 @@ namespace RicercaOperativa {
                     table.Rows[0].Cells[table.Columns.Count - 1].Value = upValue - dValue;
                     table.Columns.RemoveAt(1);
                 }
-                SM.add($"Nuovo costo: { cost.ToString() }");
-                var v = Task.Delay(500);
+                list_showMethod.Items.Add($"Nuovo costo: { cost.ToString() }");
+                var v = Task.Delay(1000);
                 v.Wait();
             }
+            list_showMethod.Items.Add("-------------------------");
         }
 
         private bool checkTotals () {
@@ -172,13 +172,19 @@ namespace RicercaOperativa {
             SM.ShowDialog();
             SM.add("INIZIO MINIMI COSTI");
             SM.add("******************************");
-            int min = 0;
-            for (int i = 0; i < table.Rows.Count - 1; i++) {
-                for (int j = 1; j < table.Columns.Count - 1; j++) {
-                    if (int.Parse(table.Rows[i].Cells[j].Value.ToString()) < min) {
-                        min = int.Parse(table.Rows[i].Cells[j].Value.ToString());
+            int min = 0, x = 0, y = 0;
+            while (table.Columns.Count > 2) {
+                for (int i = 0; i < table.Rows.Count - 1; i++) {
+                    for (int j = 1; j < table.Columns.Count - 1; j++) {
+                        if (int.Parse(table.Rows[i].Cells[j].Value.ToString()) < min) {
+                            min = int.Parse(table.Rows[i].Cells[j].Value.ToString());
+                            x = j;
+                            y = i;
+                        }
                     }
                 }
+                int upValue = int.Parse(table.Rows[y].Cells[table.Columns.Count - 1].Value.ToString());
+                int dValue = int.Parse(table.Rows[table.Rows.Count - 1].Cells[x].Value.ToString());
             }
             MessageBox.Show(min.ToString());
         }
@@ -186,7 +192,6 @@ namespace RicercaOperativa {
         private void button1_Click(object sender, EventArgs e) {
             if (table.Rows.Count > 0 && table.Columns.Count > 0 && checkTotals()) {
                 minimiCosti();
-
             } else {
                 MessageBox.Show("Dati errati: controlla che i dati siano inseriti e che i totali corrispondano");
             }
