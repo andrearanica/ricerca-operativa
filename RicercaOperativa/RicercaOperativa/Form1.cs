@@ -15,7 +15,6 @@ namespace RicercaOperativa {
                 up = int.Parse(txt_up.Text);
                 return true;
             } catch (Exception) {
-                lbl_errorUP.Text = "Errore: dati non corretti";
                 return false;
             }
         }
@@ -25,7 +24,6 @@ namespace RicercaOperativa {
                 d = int.Parse(txt_d.Text);
                 return true;
             } catch (Exception) {
-                lbl_errorD.Text = "Errore: dati non corretti";
                 return false;
             }
         }
@@ -82,6 +80,21 @@ namespace RicercaOperativa {
             } else {
                 MessageBox.Show("Devi creare una tabella per riempire i dati");
             }
+            int n = 0;
+            for (int i = 0; i < table.Rows.Count - 1; i++) {
+                int newN = r.Next(1, 10);
+                table.Rows[i].Cells[table.Columns.Count - 1].Value = newN;
+                n += newN;
+            }
+            table.Rows[table.Rows.Count - 1].Cells[table.Columns.Count - 1].Value = n;
+            int total = int.Parse(table.Rows[table.Rows.Count - 1].Cells[table.Columns.Count - 1].Value.ToString()); int sum = 0;
+            
+            for (int i = 1; i < table.Columns.Count - 2; i++) {
+                table.Rows[table.Rows.Count - 1].Cells[i].Value = total / (table.Columns.Count - 2);
+                sum += int.Parse(table.Rows[table.Rows.Count - 1].Cells[i].Value.ToString());
+            }
+
+            table.Rows[table.Rows.Count - 1].Cells[table.Columns.Count - 2].Value = total - sum;
         }
 
         private bool checkTable () {
@@ -166,29 +179,53 @@ namespace RicercaOperativa {
         }
 
         private void Form1_Load(object sender, EventArgs e) {
-
+            table.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
         }
 
         private void minimiCosti () {
-            int cost = 0;
+            int cost = 0, upValue = 0, dValue = 0;
             list_showMethod.Items.Add("INIZIO MINIMI COSTI");
             list_showMethod.Items.Add("-------------------------");
-            int min = 0, x = 0, y = 0;
+            int min = 1000, x = 0, y = 0;
             while (table.Columns.Count > 2) {
+                min = 1000;
                 for (int i = 0; i < table.Rows.Count - 1; i++) {
                     for (int j = 1; j < table.Columns.Count - 1; j++) {
                         if (int.Parse(table.Rows[i].Cells[j].Value.ToString()) < min) {
                             min = int.Parse(table.Rows[i].Cells[j].Value.ToString());
                             x = j;
                             y = i;
+                            dValue = int.Parse(table[x, table.Rows.Count - 1].Value.ToString());
+                            upValue = int.Parse(table[table.Columns.Count - 1, y].Value.ToString());
                         }
                     }
                 }
                 /*int upValue = int.Parse(table.Rows[y].Cells[table.Columns.Count - 1].Value.ToString());
                 int dValue = int.Parse(table.Rows[table.Rows.Count - 1].Cells[x].Value.ToString());*/
-                MessageBox.Show(min.ToString());
+                if (dValue > upValue) {
+                    cost += upValue * int.Parse(table.Rows[y].Cells[x].Value.ToString());
+                    table.Rows[table.Rows.Count - 1].Cells[x].Value = dValue - upValue;
+                    table.Rows[y].Cells[table.Columns.Count - 1].Value = 0;
+                    list_showMethod.Items.Add($"{upValue} * {int.Parse(table.Rows[y].Cells[x].Value.ToString())} = { upValue * int.Parse(table.Rows[y].Cells[x].Value.ToString()) }");
+                    table.Rows.RemoveAt(y);
+                } else if (dValue == upValue) {
+                    // cost += int.Parse(table.Rows[0].Cells[1].Value.ToString()) * int.Parse(table.Rows[0].Cells[1].Value.ToString());
+                    cost += dValue * int.Parse(table.Rows[y].Cells[x].Value.ToString());
+                    list_showMethod.Items.Add($"{dValue} * {int.Parse(table.Rows[y].Cells[x].Value.ToString())} = { dValue * int.Parse(table.Rows[y].Cells[x].Value.ToString()) }");
+                    table.Rows.RemoveAt(y);
+                    table.Columns.RemoveAt(x);
+                } else {
+                    cost += dValue * int.Parse(table.Rows[y].Cells[x].Value.ToString());
+                    // cost += int.Parse(table.Rows[table.Rows.Count - 1].Cells[1].Value.ToString()) * int.Parse(table.Rows[0].Cells[table.Columns.Count].Value.ToString());
+                    list_showMethod.Items.Add($"{dValue} * {int.Parse(table.Rows[y].Cells[x].Value.ToString())} = { dValue * int.Parse(table.Rows[y].Cells[x].Value.ToString()) }");
+                    table.Rows[y].Cells[table.Columns.Count - 1].Value = upValue - dValue;
+                    table.Columns.RemoveAt(x);
+                }
+                var v = Task.Delay(1000);
+                v.Wait();
             }
-            MessageBox.Show(min.ToString());
+            list_showMethod.Items.Add($"Costo finale Minimi costi: { cost }");
+            list_showMethod.Items.Add("-------------------------");
         }
 
         private void button1_Click(object sender, EventArgs e) {
