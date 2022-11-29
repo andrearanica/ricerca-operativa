@@ -13,10 +13,11 @@ Dati il numero di unità produttive e di destinazioni, il software esegue l'algo
   - [X] Numero minimo di destinazioni e unità produttive
   - [ ] Impossibilità di inserire lettere nella tabella
   - [X] Controllo del totale delle righe e colonne
-  - [ ] Intestazioni bloccate
+  - [X] Intestazioni bloccate
 - [X] Algoritmo del nord-ovest
   - [X] Funzionamento sulla tabella (modifica-rimozione celle)
   - [X] Calcolo del costo
 - [ ] Algoritmo dei minimi costi
-  - [ ] Funzionamento sulla tabella (modifica-rimozione celle)
-  - [ ] Calcolo del costo
+  - [X] Funzionamento sulla tabella (modifica-rimozione celle)
+  - [X] Calcolo del costo
+  - [ ] Gestione di due caselle con costo uguale
