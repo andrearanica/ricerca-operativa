@@ -180,6 +180,7 @@ namespace RicercaOperativa {
 
         private void Form1_Load(object sender, EventArgs e) {
             table.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+            
         }
 
         private void minimiCosti () {
@@ -233,6 +234,29 @@ namespace RicercaOperativa {
                 minimiCosti();
             } else {
                 MessageBox.Show("Dati errati: controlla che i dati siano inseriti e che i totali corrispondano");
+            }
+        }
+
+        private void button1_Click_1(object sender, EventArgs e) {
+            if (table.Rows.Count > 2 && table.Columns.Count > 2 && checkTotals()) {
+                string[,] matrix = new string[table.Rows.Count, table.Columns.Count];
+                
+            }
+            else {
+                MessageBox.Show("Dati errati: controlla che i dati siano inseriti e che i totali corrispondano");
+            }
+        }
+
+        private void table_CellBeginEdit(object sender, DataGridViewCellCancelEventArgs e) {
+            
+        }
+
+        private void table_CellEndEdit(object sender, DataGridViewCellEventArgs e) {
+            DataGridViewTextBoxCell cell = table[e.ColumnIndex, e.RowIndex] as DataGridViewTextBoxCell;
+            foreach (char c in cell.Value.ToString()) {
+                if (!char.IsDigit(c)) {
+                    cell.Value = "0";
+                }
             }
         }
 

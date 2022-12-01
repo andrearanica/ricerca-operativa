@@ -43,7 +43,7 @@ namespace RicercaOperativa
             this.txt_d = new System.Windows.Forms.NumericUpDown();
             this.btn_minimiCosti = new System.Windows.Forms.Button();
             this.list_showMethod = new System.Windows.Forms.ListBox();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btn_allMethods = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.table)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txt_up)).BeginInit();
@@ -119,11 +119,11 @@ namespace RicercaOperativa
             this.btn_createTable.BackColor = System.Drawing.Color.Maroon;
             this.btn_createTable.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.btn_createTable.ForeColor = System.Drawing.SystemColors.HighlightText;
-            this.btn_createTable.Location = new System.Drawing.Point(384, 133);
+            this.btn_createTable.Location = new System.Drawing.Point(384, 129);
             this.btn_createTable.Name = "btn_createTable";
-            this.btn_createTable.Size = new System.Drawing.Size(134, 61);
+            this.btn_createTable.Size = new System.Drawing.Size(134, 68);
             this.btn_createTable.TabIndex = 7;
-            this.btn_createTable.Text = "Crea tabella";
+            this.btn_createTable.Text = "Crea \r\ntabella";
             this.btn_createTable.UseVisualStyleBackColor = false;
             this.btn_createTable.Click += new System.EventHandler(this.btn_createTable_Click);
             // 
@@ -145,6 +145,8 @@ namespace RicercaOperativa
             this.table.Size = new System.Drawing.Size(611, 412);
             this.table.StandardTab = true;
             this.table.TabIndex = 8;
+            this.table.CellBeginEdit += new System.Windows.Forms.DataGridViewCellCancelEventHandler(this.table_CellBeginEdit);
+            this.table.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.table_CellEndEdit);
             this.table.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.table_CellValueChanged);
             // 
             // btn_test
@@ -214,18 +216,19 @@ namespace RicercaOperativa
             this.list_showMethod.Size = new System.Drawing.Size(360, 412);
             this.list_showMethod.TabIndex = 15;
             // 
-            // button1
+            // btn_allMethods
             // 
-            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.button1.BackColor = System.Drawing.Color.Maroon;
-            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.button1.ForeColor = System.Drawing.SystemColors.HighlightText;
-            this.button1.Location = new System.Drawing.Point(955, 133);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(116, 60);
-            this.button1.TabIndex = 16;
-            this.button1.Text = "Tutti i metodi";
-            this.button1.UseVisualStyleBackColor = false;
+            this.btn_allMethods.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btn_allMethods.BackColor = System.Drawing.Color.Maroon;
+            this.btn_allMethods.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.btn_allMethods.ForeColor = System.Drawing.SystemColors.HighlightText;
+            this.btn_allMethods.Location = new System.Drawing.Point(955, 133);
+            this.btn_allMethods.Name = "btn_allMethods";
+            this.btn_allMethods.Size = new System.Drawing.Size(116, 60);
+            this.btn_allMethods.TabIndex = 16;
+            this.btn_allMethods.Text = "Tutti i metodi";
+            this.btn_allMethods.UseVisualStyleBackColor = false;
+            this.btn_allMethods.Click += new System.EventHandler(this.button1_Click_1);
             // 
             // Form1
             // 
@@ -233,7 +236,7 @@ namespace RicercaOperativa
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.HighlightText;
             this.ClientSize = new System.Drawing.Size(1193, 705);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btn_allMethods);
             this.Controls.Add(this.list_showMethod);
             this.Controls.Add(this.btn_minimiCosti);
             this.Controls.Add(this.txt_d);
@@ -282,7 +285,7 @@ namespace RicercaOperativa
         private System.Windows.Forms.NumericUpDown txt_d;
         private System.Windows.Forms.Button btn_minimiCosti;
         private System.Windows.Forms.ListBox list_showMethod;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btn_allMethods;
     }
 }
 
