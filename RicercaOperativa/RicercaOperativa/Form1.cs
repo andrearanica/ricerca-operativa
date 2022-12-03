@@ -73,30 +73,30 @@ namespace RicercaOperativa {
 
         private void btn_test_Click(object sender, EventArgs e) {
             Random r = new Random();
-            if (checkUP() && checkD() && table.Rows.Count > 0 && table.Columns.Count > 0) {
+            if (checkUP() && checkD() && table.Rows.Count > 2 && table.Columns.Count > 2) {
                 for (int i = 0; i < up; i++) {
                     for (int j = 1; j <= d; j++) {
                         table.Rows[i].Cells[j].Value = r.Next(0, 10);
                     }
                 }
+                int n = 0;
+                for (int i = 0; i < table.Rows.Count - 1; i++) {
+                    int newN = r.Next(1, 10);
+                    table.Rows[i].Cells[table.Columns.Count - 1].Value = newN;
+                    n += newN;
+                }
+                table.Rows[table.Rows.Count - 1].Cells[table.Columns.Count - 1].Value = n;
+                int total = int.Parse(table.Rows[table.Rows.Count - 1].Cells[table.Columns.Count - 1].Value.ToString()); int sum = 0;
+
+                for (int i = 1; i < table.Columns.Count - 2; i++) {
+                    table.Rows[table.Rows.Count - 1].Cells[i].Value = total / (table.Columns.Count - 2);
+                    sum += int.Parse(table.Rows[table.Rows.Count - 1].Cells[i].Value.ToString());
+                }
+
+                table.Rows[table.Rows.Count - 1].Cells[table.Columns.Count - 2].Value = total - sum;
             } else {
                 MessageBox.Show("Devi creare una tabella per riempire i dati");
             }
-            int n = 0;
-            for (int i = 0; i < table.Rows.Count - 1; i++) {
-                int newN = r.Next(1, 10);
-                table.Rows[i].Cells[table.Columns.Count - 1].Value = newN;
-                n += newN;
-            }
-            table.Rows[table.Rows.Count - 1].Cells[table.Columns.Count - 1].Value = n;
-            int total = int.Parse(table.Rows[table.Rows.Count - 1].Cells[table.Columns.Count - 1].Value.ToString()); int sum = 0;
-            
-            for (int i = 1; i < table.Columns.Count - 2; i++) {
-                table.Rows[table.Rows.Count - 1].Cells[i].Value = total / (table.Columns.Count - 2);
-                sum += int.Parse(table.Rows[table.Rows.Count - 1].Cells[i].Value.ToString());
-            }
-
-            table.Rows[table.Rows.Count - 1].Cells[table.Columns.Count - 2].Value = total - sum;
         }
 
         private bool checkTable () {
@@ -112,6 +112,10 @@ namespace RicercaOperativa {
             return true;
         }
 
+        private void restoreTable () {
+
+        }
+
         private void nordOvest () {
             // int o = int.Parse(table.Rows[up].Cells[0].Value.ToString()) - int.Parse(table.Rows[0].Cells[d].Value.ToString());
             // MessageBox.Show(table.Rows[up].Cells[1].Value.ToString() + " - " + table.Rows[0].Cells[d + 1].Value.ToString());
@@ -123,22 +127,23 @@ namespace RicercaOperativa {
             while (table.Columns.Count > 2) {
                 int upValue = int.Parse(table.Rows[0].Cells[table.Columns.Count - 1].Value.ToString());
                 int dValue = int.Parse(table.Rows[table.Rows.Count - 1].Cells[1].Value.ToString());
+
                 if (dValue > upValue) {
                     cost += upValue * int.Parse(table.Rows[0].Cells[1].Value.ToString());
                     table.Rows[table.Rows.Count - 1].Cells[1].Value = dValue - upValue;
                     table.Rows[0].Cells[table.Columns.Count - 1].Value = 0;
-                    list_showMethod.Items.Add($"{ upValue } * { int.Parse(table.Rows[0].Cells[1].Value.ToString()) } = { upValue * int.Parse(table.Rows[0].Cells[1].Value.ToString()) }");
+                    list_showMethod.Items.Add($"{ table.Rows[0].Cells[0].Value } --> { table.Columns[1].HeaderText } | { upValue } unità  * { int.Parse(table.Rows[0].Cells[1].Value.ToString()) } = { upValue * int.Parse(table.Rows[0].Cells[1].Value.ToString()) }");
                     table.Rows.RemoveAt(0);
                 } else if (dValue == upValue) {
                     // cost += int.Parse(table.Rows[0].Cells[1].Value.ToString()) * int.Parse(table.Rows[0].Cells[1].Value.ToString());
                     cost += dValue * int.Parse( table.Rows[0].Cells[1].Value.ToString());
-                    list_showMethod.Items.Add($"{ dValue } * { int.Parse(table.Rows[0].Cells[1].Value.ToString()) } = { dValue * int.Parse(table.Rows[0].Cells[1].Value.ToString()) }");
+                    list_showMethod.Items.Add($"{ table.Rows[0].Cells[0].Value } --> { table.Columns[1].HeaderText } | { dValue } unità * { int.Parse(table.Rows[0].Cells[1].Value.ToString()) } = { dValue * int.Parse(table.Rows[0].Cells[1].Value.ToString()) }");
                     table.Rows.RemoveAt(0);
                     table.Columns.RemoveAt(1);
                 } else {
                     cost += dValue * int.Parse(table.Rows[0].Cells[1].Value.ToString());
                     // cost += int.Parse(table.Rows[table.Rows.Count - 1].Cells[1].Value.ToString()) * int.Parse(table.Rows[0].Cells[table.Columns.Count].Value.ToString());
-                    list_showMethod.Items.Add($"{ dValue } * { int.Parse(table.Rows[0].Cells[1].Value.ToString()) } = { dValue * int.Parse(table.Rows[0].Cells[1].Value.ToString()) }");
+                    list_showMethod.Items.Add($"{ table.Rows[0].Cells[0].Value } --> { table.Columns[1].HeaderText } | { dValue } unità * { int.Parse(table.Rows[0].Cells[1].Value.ToString()) } = { dValue * int.Parse(table.Rows[0].Cells[1].Value.ToString()) }");
                     table.Rows[0].Cells[table.Columns.Count - 1].Value = upValue - dValue;
                     table.Columns.RemoveAt(1);
                 }
@@ -173,6 +178,7 @@ namespace RicercaOperativa {
         }
 
         private void btn_nordOvest_Click(object sender, EventArgs e) {
+            list_showMethod.Items.Clear();
             if (table.Rows.Count > 2 && table.Columns.Count > 2 && checkTotals()) {
                 Thread t = new Thread(new ThreadStart(nordOvest));
                 t.Start();
@@ -211,18 +217,18 @@ namespace RicercaOperativa {
                     cost += upValue * int.Parse(table.Rows[y].Cells[x].Value.ToString());
                     table.Rows[table.Rows.Count - 1].Cells[x].Value = dValue - upValue;
                     table.Rows[y].Cells[table.Columns.Count - 1].Value = 0;
-                    list_showMethod.Items.Add($"{upValue} * {int.Parse(table.Rows[y].Cells[x].Value.ToString())} = { upValue * int.Parse(table.Rows[y].Cells[x].Value.ToString()) }");
+                    list_showMethod.Items.Add($"{ table.Rows[y].Cells[0].Value } --> { table.Columns[x].HeaderText } | {upValue} unità * {int.Parse(table.Rows[y].Cells[x].Value.ToString())} = { upValue * int.Parse(table.Rows[y].Cells[x].Value.ToString()) }");
                     table.Rows.RemoveAt(y);
                 } else if (dValue == upValue) {
                     // cost += int.Parse(table.Rows[0].Cells[1].Value.ToString()) * int.Parse(table.Rows[0].Cells[1].Value.ToString());
                     cost += dValue * int.Parse(table.Rows[y].Cells[x].Value.ToString());
-                    list_showMethod.Items.Add($"{dValue} * {int.Parse(table.Rows[y].Cells[x].Value.ToString())} = { dValue * int.Parse(table.Rows[y].Cells[x].Value.ToString()) }");
+                    list_showMethod.Items.Add($"{ table.Rows[y].Cells[0].Value } --> { table.Columns[x].HeaderText } | {dValue} unità * {int.Parse(table.Rows[y].Cells[x].Value.ToString())} = { dValue * int.Parse(table.Rows[y].Cells[x].Value.ToString()) }");
                     table.Rows.RemoveAt(y);
                     table.Columns.RemoveAt(x);
                 } else {
                     cost += dValue * int.Parse(table.Rows[y].Cells[x].Value.ToString());
                     // cost += int.Parse(table.Rows[table.Rows.Count - 1].Cells[1].Value.ToString()) * int.Parse(table.Rows[0].Cells[table.Columns.Count].Value.ToString());
-                    list_showMethod.Items.Add($"{dValue} * {int.Parse(table.Rows[y].Cells[x].Value.ToString())} = { dValue * int.Parse(table.Rows[y].Cells[x].Value.ToString()) }");
+                    list_showMethod.Items.Add($"{ table.Rows[y].Cells[0].Value } --> { table.Columns[x].HeaderText } | {dValue} unità * {int.Parse(table.Rows[y].Cells[x].Value.ToString())} = { dValue * int.Parse(table.Rows[y].Cells[x].Value.ToString()) }");
                     table.Rows[y].Cells[table.Columns.Count - 1].Value = upValue - dValue;
                     table.Columns.RemoveAt(x);
                 }
@@ -234,7 +240,8 @@ namespace RicercaOperativa {
         }
 
         private void button1_Click(object sender, EventArgs e) {
-            if (table.Rows.Count > 0 && table.Columns.Count > 0 && checkTotals()) {
+            list_showMethod.Items.Clear();
+            if (table.Rows.Count > 2 && table.Columns.Count > 2 && checkTotals()) {
                 Thread t = new Thread(new ThreadStart(minimiCosti));
                 t.Start();
             } else {
@@ -243,6 +250,7 @@ namespace RicercaOperativa {
         }
 
         private void button1_Click_1(object sender, EventArgs e) {
+            list_showMethod.Items.Clear();
             if (table.Rows.Count > 2 && table.Columns.Count > 2 && checkTotals()) {
                 string[,] matrix = new string[table.Rows.Count, table.Columns.Count];
                 foreach (DataGridViewRow row in table.Rows) {
