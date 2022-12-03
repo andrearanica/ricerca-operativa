@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 using System.Threading.Tasks;
+using System.Threading;
 
 namespace RicercaOperativa {
     public partial class Form1 : Form {
@@ -8,6 +9,7 @@ namespace RicercaOperativa {
         int up, d;
         public Form1() {
             InitializeComponent();
+            CheckForIllegalCrossThreadCalls = false;
         }
         private bool checkUP () {
             lbl_errorUP.Text = "";
@@ -172,7 +174,8 @@ namespace RicercaOperativa {
 
         private void btn_nordOvest_Click(object sender, EventArgs e) {
             if (table.Rows.Count > 2 && table.Columns.Count > 2 && checkTotals()) {
-                nordOvest();
+                Thread t = new Thread(new ThreadStart(nordOvest));
+                t.Start();
             } else {
                 MessageBox.Show("Dati errati: controlla che i dati siano inseriti e che i totali corrispondano");
             }
@@ -184,6 +187,7 @@ namespace RicercaOperativa {
         }
 
         private void minimiCosti () {
+            
             int cost = 0, upValue = 0, dValue = 0;
             list_showMethod.Items.Add("INIZIO MINIMI COSTI");
             list_showMethod.Items.Add("-------------------------");
@@ -231,7 +235,8 @@ namespace RicercaOperativa {
 
         private void button1_Click(object sender, EventArgs e) {
             if (table.Rows.Count > 0 && table.Columns.Count > 0 && checkTotals()) {
-                minimiCosti();
+                Thread t = new Thread(new ThreadStart(minimiCosti));
+                t.Start();
             } else {
                 MessageBox.Show("Dati errati: controlla che i dati siano inseriti e che i totali corrispondano");
             }
@@ -240,7 +245,38 @@ namespace RicercaOperativa {
         private void button1_Click_1(object sender, EventArgs e) {
             if (table.Rows.Count > 2 && table.Columns.Count > 2 && checkTotals()) {
                 string[,] matrix = new string[table.Rows.Count, table.Columns.Count];
-                
+                foreach (DataGridViewRow row in table.Rows) {
+                    foreach (DataGridViewColumn col in table.Columns) {
+                        matrix[row.Index, col.Index] = table.Rows[row.Index].Cells[col.Index].Value.ToString();
+                    }
+                }
+                nordOvest();
+                table.Rows.Clear(); table.Columns.Clear();
+                // Add rows and columns
+                for (int i = 0; i < matrix.GetLength(1); i++) {
+                    if (i != 0 && i != matrix.GetLength(1)) {
+                        table.Columns.Add($"D{ i }", $"D{ i }");
+                    } else {
+                        if (i == 0) {
+                            table.Columns.Add($"", $"");
+                        } else {
+                            table.Columns.Add($"Tot Up", $"Tot Up");
+                        }
+                    }
+                }
+                for (int i = 0; i < matrix.GetLength(0); i++) table.Rows.Add();
+
+                // Add values
+                for (int i = 0; i < matrix.GetLength(0); i++) {
+                    for (int j = 0; j < matrix.GetLength(1); j++) {
+                        table.Rows[i].Cells[j].Value = matrix[i, j];
+                    } 
+                }
+
+                var v = Task.Delay(1000);
+                v.Wait();
+
+                minimiCosti();
             }
             else {
                 MessageBox.Show("Dati errati: controlla che i dati siano inseriti e che i totali corrispondano");
@@ -266,13 +302,6 @@ namespace RicercaOperativa {
             } else {
                 MessageBox.Show("Devi inserire almeno due unità produttive e due destinazioni");
             }
-        }
-    }
-    public class Point {
-        public int row { get; set; }
-        public int col { get; set; }
-        public Point(int col, int row) {
-            this.row = row; this.col = col;
         }
     }
 }
