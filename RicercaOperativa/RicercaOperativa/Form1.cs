@@ -7,6 +7,8 @@ namespace RicercaOperativa {
     public partial class Form1 : Form {
         // private int[,] matrix;
         int up, d;
+        string[,] matrix;
+
         public Form1() {
             InitializeComponent();
             CheckForIllegalCrossThreadCalls = false;
@@ -112,8 +114,46 @@ namespace RicercaOperativa {
             return true;
         }
 
-        private void restoreTable () {
+        private void setMatrix () {
+            matrix = new string[table.Rows.Count, table.Columns.Count];
+            foreach (DataGridViewRow row in table.Rows) {
+                foreach (DataGridViewColumn col in table.Columns) {
+                    matrix[row.Index, col.Index] = table.Rows[row.Index].Cells[col.Index].Value.ToString();
+                }
+            }
+        }
 
+        private void restoreTable () {
+            table.Rows.Clear(); table.Columns.Clear();
+            // Add rows and columns
+            for (int i = 0; i < matrix.GetLength(1); i++)
+            {
+                if (i != 0 && i != matrix.GetLength(1))
+                {
+                    table.Columns.Add($"D{ i }", $"D{ i }");
+                }
+                else
+                {
+                    if (i == 0)
+                    {
+                        table.Columns.Add($"", $"");
+                    }
+                    else
+                    {
+                        table.Columns.Add($"Tot Up", $"Tot Up");
+                    }
+                }
+            }
+            for (int i = 0; i < matrix.GetLength(0); i++) table.Rows.Add();
+
+            // Add values
+            for (int i = 0; i < matrix.GetLength(0); i++)
+            {
+                for (int j = 0; j < matrix.GetLength(1); j++)
+                {
+                    table.Rows[i].Cells[j].Value = matrix[i, j];
+                }
+            }
         }
 
         private void nordOvest () {
@@ -123,7 +163,7 @@ namespace RicercaOperativa {
             // lbl_showCost.Text = "Risolvo con il metodo Nord Ovest\n";
 
             list_showMethod.Items.Add("INIZIO NORD-OVEST");
-            list_showMethod.Items.Add("-------------------------");
+            list_showMethod.Items.Add("--------------------------------------------------");
             while (table.Columns.Count > 2) {
                 int upValue = int.Parse(table.Rows[0].Cells[table.Columns.Count - 1].Value.ToString());
                 int dValue = int.Parse(table.Rows[table.Rows.Count - 1].Cells[1].Value.ToString());
@@ -151,7 +191,8 @@ namespace RicercaOperativa {
                 v.Wait();
             }
             list_showMethod.Items.Add($"Costo finale Nord-Ovest: { cost }");
-            list_showMethod.Items.Add("-------------------------");
+            list_showMethod.Items.Add("--------------------------------------------------");
+            restoreTable();
         }
 
         private bool checkTotals () {
@@ -180,6 +221,7 @@ namespace RicercaOperativa {
         private void btn_nordOvest_Click(object sender, EventArgs e) {
             list_showMethod.Items.Clear();
             if (table.Rows.Count > 2 && table.Columns.Count > 2 && checkTotals()) {
+                setMatrix();
                 Thread t = new Thread(new ThreadStart(nordOvest));
                 t.Start();
             } else {
@@ -193,10 +235,9 @@ namespace RicercaOperativa {
         }
 
         private void minimiCosti () {
-            
             int cost = 0, upValue = 0, dValue = 0;
             list_showMethod.Items.Add("INIZIO MINIMI COSTI");
-            list_showMethod.Items.Add("-------------------------");
+            list_showMethod.Items.Add("--------------------------------------------------");
             int min = 1000, x = 0, y = 0;
             while (table.Columns.Count > 2) {
                 min = 1000;
@@ -208,6 +249,14 @@ namespace RicercaOperativa {
                             y = i;
                             dValue = int.Parse(table[x, table.Rows.Count - 1].Value.ToString());
                             upValue = int.Parse(table[table.Columns.Count - 1, y].Value.ToString());
+                        } else if (int.Parse(table.Rows[i].Cells[j].Value.ToString()) == min) {
+                            if (int.Parse(table.Rows[table.Rows.Count - 1].Cells[j].Value.ToString()) > int.Parse(table.Rows[table.Rows.Count - 1].Cells[x].Value.ToString())) {
+                                min = int.Parse(table.Rows[i].Cells[j].Value.ToString());
+                                x = j;
+                                y = i;
+                                dValue = int.Parse(table[x, table.Rows.Count - 1].Value.ToString());
+                                upValue = int.Parse(table[table.Columns.Count - 1, y].Value.ToString());
+                            }
                         }
                     }
                 }
@@ -236,12 +285,14 @@ namespace RicercaOperativa {
                 v.Wait();
             }
             list_showMethod.Items.Add($"Costo finale Minimi costi: { cost }");
-            list_showMethod.Items.Add("-------------------------");
+            list_showMethod.Items.Add("--------------------------------------------------");
+            restoreTable();
         }
 
         private void button1_Click(object sender, EventArgs e) {
             list_showMethod.Items.Clear();
             if (table.Rows.Count > 2 && table.Columns.Count > 2 && checkTotals()) {
+                setMatrix();
                 Thread t = new Thread(new ThreadStart(minimiCosti));
                 t.Start();
             } else {
@@ -252,39 +303,13 @@ namespace RicercaOperativa {
         private void button1_Click_1(object sender, EventArgs e) {
             list_showMethod.Items.Clear();
             if (table.Rows.Count > 2 && table.Columns.Count > 2 && checkTotals()) {
-                string[,] matrix = new string[table.Rows.Count, table.Columns.Count];
-                foreach (DataGridViewRow row in table.Rows) {
-                    foreach (DataGridViewColumn col in table.Columns) {
-                        matrix[row.Index, col.Index] = table.Rows[row.Index].Cells[col.Index].Value.ToString();
-                    }
-                }
+                setMatrix();
                 nordOvest();
-                table.Rows.Clear(); table.Columns.Clear();
-                // Add rows and columns
-                for (int i = 0; i < matrix.GetLength(1); i++) {
-                    if (i != 0 && i != matrix.GetLength(1)) {
-                        table.Columns.Add($"D{ i }", $"D{ i }");
-                    } else {
-                        if (i == 0) {
-                            table.Columns.Add($"", $"");
-                        } else {
-                            table.Columns.Add($"Tot Up", $"Tot Up");
-                        }
-                    }
-                }
-                for (int i = 0; i < matrix.GetLength(0); i++) table.Rows.Add();
-
-                // Add values
-                for (int i = 0; i < matrix.GetLength(0); i++) {
-                    for (int j = 0; j < matrix.GetLength(1); j++) {
-                        table.Rows[i].Cells[j].Value = matrix[i, j];
-                    } 
-                }
-
+                restoreTable();
                 var v = Task.Delay(1000);
                 v.Wait();
-
                 minimiCosti();
+                restoreTable();
             }
             else {
                 MessageBox.Show("Dati errati: controlla che i dati siano inseriti e che i totali corrispondano");
