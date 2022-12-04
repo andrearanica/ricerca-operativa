@@ -4,14 +4,14 @@ Dati il numero di unità produttive e di destinazioni, il software esegue l'algo
 
 ## Algoritmi
 | Titolo        | Funzionamento                                                                             |
-| ------        | ---------------                                                                           |
-| Nord-ovest    | La casella di riferimento è sempre quella in alto a sinistra, ovvero quella a nord ovest  |
-| Minimi costi  | La casella di riferimento è quella che contiene il costo più basso                        |
+| ------------- | ----------------------------------------------------------------------------------------- |
+| Nord-ovest    | Risolve unicamente il problema di allocazione (primo livello); si procede sempre esaminando la matrice a partire all’angolo superiore sinistro  |
+| Minimi costi  | Minimizza i costi individuando il trasporto più economico e procedendo con quello                        |
 
 ## 🚧 Roadmap
 - [ ] Inserimento dei dati
   - [X] Numero minimo di destinazioni e unità produttive
-  - [ ] Impossibilità di inserire lettere nella tabella
+  - [X] Impossibilità di inserire lettere nella tabella
   - [X] Controllo del totale delle righe e colonne
   - [X] Intestazioni bloccate
 - [X] Algoritmo del nord-ovest
@@ -20,4 +20,4 @@ Dati il numero di unità produttive e di destinazioni, il software esegue l'algo
 - [ ] Algoritmo dei minimi costi
   - [X] Funzionamento sulla tabella (modifica-rimozione celle)
   - [X] Calcolo del costo
-  - [ ] Gestione di due caselle con costo uguale
+  - [X] Gestione di due caselle con costo uguale
