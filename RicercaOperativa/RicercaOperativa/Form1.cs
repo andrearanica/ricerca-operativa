@@ -161,7 +161,7 @@ namespace RicercaOperativa {
             // MessageBox.Show(table.Rows[up].Cells[1].Value.ToString() + " - " + table.Rows[0].Cells[d + 1].Value.ToString());
             int cost = 0;
             // lbl_showCost.Text = "Risolvo con il metodo Nord Ovest\n";
-
+            table.Enabled = false;
             list_showMethod.Items.Add("INIZIO NORD-OVEST");
             list_showMethod.Items.Add("--------------------------------------------------");
             while (table.Columns.Count > 2) {
@@ -193,6 +193,7 @@ namespace RicercaOperativa {
             list_showMethod.Items.Add($"Costo finale Nord-Ovest: { cost }");
             list_showMethod.Items.Add("--------------------------------------------------");
             restoreTable();
+            table.Enabled = true;
         }
 
         private bool checkTotals () {
@@ -217,7 +218,6 @@ namespace RicercaOperativa {
             if (n != total) return false;
             return true;
         }
-
         private void btn_nordOvest_Click(object sender, EventArgs e) {
             list_showMethod.Items.Clear();
             if (table.Rows.Count > 2 && table.Columns.Count > 2 && checkTotals()) {
@@ -231,10 +231,11 @@ namespace RicercaOperativa {
 
         private void Form1_Load(object sender, EventArgs e) {
             table.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-            
+            table.AllowUserToOrderColumns = false;
         }
 
         private void minimiCosti () {
+            table.Enabled = false;
             int cost = 0, upValue = 0, dValue = 0;
             list_showMethod.Items.Add("INIZIO MINIMI COSTI");
             list_showMethod.Items.Add("--------------------------------------------------");
@@ -287,6 +288,7 @@ namespace RicercaOperativa {
             list_showMethod.Items.Add($"Costo finale Minimi costi: { cost }");
             list_showMethod.Items.Add("--------------------------------------------------");
             restoreTable();
+            table.Enabled = true;
         }
 
         private void button1_Click(object sender, EventArgs e) {
@@ -322,16 +324,21 @@ namespace RicercaOperativa {
 
         private void table_CellEndEdit(object sender, DataGridViewCellEventArgs e) {
             DataGridViewTextBoxCell cell = table[e.ColumnIndex, e.RowIndex] as DataGridViewTextBoxCell;
-            foreach (char c in cell.Value.ToString()) {
-                if (!char.IsDigit(c)) {
-                    cell.Value = "0";
+            try {
+                foreach (char c in cell.Value.ToString()) {
+                    if (!char.IsDigit(c)) {
+                        cell.Value = "0";
+                    }
                 }
+            } catch {
+                MessageBox.Show("Dati non corretti");
             }
         }
 
         private void btn_createTable_Click(object sender, EventArgs e) {
             if (checkInput() && int.Parse(txt_up.Text) >= 2 && int.Parse(txt_d.Text) >= 2) {
                 createTable(d, up);
+                for (int i = 0; i < table.Columns.Count; i++) table.Columns[i].SortMode = DataGridViewColumnSortMode.NotSortable;
             } else {
                 MessageBox.Show("Devi inserire almeno due unità produttive e due destinazioni");
             }
