@@ -180,16 +180,36 @@ namespace RicercaOperativa
             // txt_up
             // 
             this.txt_up.Location = new System.Drawing.Point(299, 133);
+            this.txt_up.Minimum = new decimal(new int[] {
+            2,
+            0,
+            0,
+            0});
             this.txt_up.Name = "txt_up";
             this.txt_up.Size = new System.Drawing.Size(79, 29);
             this.txt_up.TabIndex = 12;
+            this.txt_up.Value = new decimal(new int[] {
+            2,
+            0,
+            0,
+            0});
             // 
             // txt_d
             // 
             this.txt_d.Location = new System.Drawing.Point(299, 165);
+            this.txt_d.Minimum = new decimal(new int[] {
+            2,
+            0,
+            0,
+            0});
             this.txt_d.Name = "txt_d";
             this.txt_d.Size = new System.Drawing.Size(79, 29);
             this.txt_d.TabIndex = 13;
+            this.txt_d.Value = new decimal(new int[] {
+            2,
+            0,
+            0,
+            0});
             // 
             // btn_minimiCosti
             // 

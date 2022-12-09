@@ -325,13 +325,19 @@ namespace RicercaOperativa {
         private void table_CellEndEdit(object sender, DataGridViewCellEventArgs e) {
             DataGridViewTextBoxCell cell = table[e.ColumnIndex, e.RowIndex] as DataGridViewTextBoxCell;
             try {
-                foreach (char c in cell.Value.ToString()) {
-                    if (!char.IsDigit(c)) {
-                        cell.Value = "0";
+                if (cell.Value != null) {
+                    foreach (char c in cell.Value.ToString()) {
+                        if (!char.IsDigit(c))
+                        {
+                            cell.Value = "0";
+                        }
+                    }
+                    if (int.Parse(cell.Value.ToString()) > 100000) {
+                        cell.Value = 100000;
                     }
                 }
             } catch {
-                MessageBox.Show("Dati non corretti");
+                cell.Value = 100000;
             }
         }
 
