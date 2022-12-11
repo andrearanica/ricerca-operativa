@@ -47,6 +47,7 @@ namespace RicercaOperativa {
             for (int i = 0; i <= d; i++) {
                 table.Columns.Add("", "");
                 table.Columns[i].HeaderText = "D" + (i);
+                table.Columns[i].SortMode = DataGridViewColumnSortMode.NotSortable;
             }
             table.Columns[0].HeaderText = "";
             for (int i = 0; i < up; i++) {
@@ -78,7 +79,7 @@ namespace RicercaOperativa {
             if (checkUP() && checkD() && table.Rows.Count > 2 && table.Columns.Count > 2) {
                 for (int i = 0; i < up; i++) {
                     for (int j = 1; j <= d; j++) {
-                        table.Rows[i].Cells[j].Value = r.Next(0, 10);
+                        table.Rows[i].Cells[j].Value = r.Next(0, 50);
                     }
                 }
                 int n = 0;
@@ -332,12 +333,12 @@ namespace RicercaOperativa {
                             cell.Value = "0";
                         }
                     }
-                    if (int.Parse(cell.Value.ToString()) > 100000) {
-                        cell.Value = 100000;
+                    if (int.Parse(cell.Value.ToString()) > 50000) {
+                        cell.Value = 50000;
                     }
                 }
             } catch {
-                cell.Value = 100000;
+                cell.Value = 50000;
             }
         }
 
